@@ -1,0 +1,37 @@
+name: Suricata-Check
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  suricata-check:
+    name: Suricata-Check
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel build
+          python -m pip install --upgrade regex
+          python -m pip install git+https://github.com/Koen1999/suricata-check.git@ci-cd
+
+      - name: Test with suricata-check
+        run: |
+          suricata-check --github
