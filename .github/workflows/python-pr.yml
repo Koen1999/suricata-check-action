@@ -34,4 +34,4 @@ jobs:
 
       - name: Test with suricata-check
         run: |
-          suricata-check --github
+          suricata-check --github --issue-severity=WARNING
