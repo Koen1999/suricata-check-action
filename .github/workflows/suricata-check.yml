@@ -22,8 +22,6 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v6
-        with:
-          cache: "pip"
 
       - name: Install dependencies
         run: |
