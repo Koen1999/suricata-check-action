@@ -2,9 +2,9 @@ name: Suricata Check
 
 on:
   pull_request:
-    branches: ["main"]
+    branches: ["main", "master"]
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
@@ -25,9 +25,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip setuptools wheel build
-          python -m pip install "suricata-check[performance]>=0.7.1beta0"
+          python -m pip install --upgrade --upgrade-strategy eager pip
+          python -m pip install suricata-check[performance]
 
       - name: Test with suricata-check
         run: |
-          suricata-check --github --issue-severity=WARNING
+          suricata-check --github
