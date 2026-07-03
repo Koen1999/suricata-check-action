@@ -1,0 +1,23 @@
+name: Verify Action
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-suricata-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run suricata-check verification
+        uses: Koen1999/suricata-check-action@master
+        with:
+          python_version: "3.x"
+          extra_args: "-r tests/rules/valid.rules --ini tests/suricata-check.ini"
