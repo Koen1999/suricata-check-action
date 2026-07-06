@@ -1,6 +1,6 @@
 # Suricata Check Action
 
-This action runs `suricata-check` to validate rules and highlight issues in Pull Requests. It is available as both a **Composite Action** and a **Reusable Workflow**.
+This action runs `suricata-check` to validate rules and highlight issues in Pull Requests. It is available as a **Composite Action**.
 
 ## Installation
 
@@ -11,21 +11,7 @@ To use this action as a composite action, add it to your workflow file:
 ```yaml
 steps:
   - uses: actions/checkout@v4
-  - uses: Koen1999/suricata-check-action@master
-    with:
-      python_version: "3.x"
-      extra_packages: "requests,pandas"
-      extra_args: "--ini suricata-check.ini"
-```
-
-### Using as a Reusable Workflow
-
-To use this action as a reusable workflow, call it from your workflow file:
-
-```yaml
-jobs:
-  lint:
-    uses: Koen1999/suricata-check-action@master
+  - uses: Koen1999/suricata-check-action@v1.1
     with:
       python_version: "3.x"
       extra_packages: "requests,pandas"
@@ -37,7 +23,7 @@ jobs:
 Here are some examples of how to use the `extra_args` input to customize the check:
 
 ```yaml
-- uses: Koen1999/suricata-check-action@master
+- uses: Koen1999/suricata-check-action@v1.1
   with:
     python_version: "3.x"
     # Pass multiple arguments as a space-separated string
