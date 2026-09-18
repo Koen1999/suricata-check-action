@@ -14,7 +14,7 @@ jobs:
   verify-suricata-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Run suricata-check verification
         uses: Koen1999/suricata-check-action@master

@@ -10,7 +10,7 @@ To use this action as a composite action, add it to your workflow file:
 
 ```yaml
 steps:
-  - uses: actions/checkout@v4
+  - uses: actions/checkout@v5
   - uses: Koen1999/suricata-check-action@v1.1
     with:
       python_version: "3.x"
